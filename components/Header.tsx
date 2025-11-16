@@ -154,6 +154,27 @@ export function Header() {
               >
                 Contact
               </Link>
+              <Link 
+                href="/privacy" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-3 rounded-lg text-lg font-medium text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all mb-2"
+              >
+                Privacy
+              </Link>
+              <Link 
+                href="/terms" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-3 rounded-lg text-lg font-medium text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+              >
+                Terms
+              </Link>
+              <Link 
+                href="/support" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-3 rounded-lg text-lg font-medium text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+              >
+                Support
+              </Link>
             </nav>
 
             {/* Bottom Actions - Fixed */}

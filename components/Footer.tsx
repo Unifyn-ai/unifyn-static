@@ -8,7 +8,7 @@ export function Footer() {
     <footer className="relative border-t border-slate-200/60 dark:border-slate-800/50 py-8 sm:py-10 md:py-12" role="contentinfo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Brand Section - Full Width on Mobile */}
-        <div className="mb-6 sm:mb-8">
+        <div className="mb-4 sm:mb-4">
           <a href="/" className="inline-flex items-center mb-4 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-950 rounded-lg" aria-label="Unifyn home">
             <img
               src={logoSrc}
@@ -21,15 +21,25 @@ export function Footer() {
               className="h-7 sm:h-8 w-auto"
             />
           </a>
-          <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed max-w-md">Global <strong>unified finance platform</strong> and <strong>broker‑agnostic trading platform</strong>.</p>
+          <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Global <strong>unified finance platform</strong> and <strong>broker‑agnostic trading platform</strong>.</p>
         </div>
 
         {/* Legal Links */}
-        <div className="mb-6 sm:mb-8">
-          <div className="flex flex-wrap items-center gap-6">
-            <a href="/terms" className="text-sm text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Terms of Service</a>
+        <div className="">
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            <a href="/terms" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Terms of Service</a>
             <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-            <a href="/privacy" className="text-sm text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Privacy Policy</a>
+            <a href="/privacy" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Privacy Policy</a>
+            <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
+            <a href="/cookie-policy" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Cookie Policy</a>
+            <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
+            <a href="/refund-policy" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Refund & Billing</a>
+            <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
+            <a href="/data-deletion" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Data Deletion</a>
+            <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
+            <a href="/eula" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Mobile App EULA</a>
+            <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
+            <a href="/support" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Support</a>
           </div>
         </div>
 
