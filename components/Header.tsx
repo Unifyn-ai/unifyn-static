@@ -4,9 +4,8 @@ import { useTheme } from './ThemeProvider';
 import { useState, useEffect } from 'react';
 
 export function Header() {
-  const { mode, setMode, isDark } = useTheme();
+  const { mode, setMode } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const logoSrc = isDark ? '/assets/img/logo-dark.svg' : '/assets/img/logo-light.svg';
 
   const baseNavLinkClass =
     "px-4 py-1.5 rounded-full text-sm text-slate-700 dark:text-slate-300 hover:bg-black/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:bg-black/5 dark:focus-visible:bg-white/10 focus-visible:ring-offset-1 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950";
@@ -37,14 +36,14 @@ export function Header() {
         {/* Logo - LEFT SIDE */}
         <Link href="/" className="flex items-center justify-self-start focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-950 rounded-lg shrink-0">
           <img
-            src={logoSrc}
-            onError={(e) => {
-              if ((e.currentTarget as HTMLImageElement).src.includes('logo-light.svg')) {
-                (e.currentTarget as HTMLImageElement).src = '/assets/img/logo-dark.svg';
-              }
-            }}
+            src="/assets/img/logo-light.svg"
             alt="Unifyn - Unified Finance Superapp Logo"
-            className="h-6 sm:h-8 w-auto"
+            className="h-6 sm:h-8 w-auto block dark:hidden"
+          />
+          <img
+            src="/assets/img/logo-dark.svg"
+            alt="Unifyn - Unified Finance Superapp Logo"
+            className="h-6 sm:h-8 w-auto hidden dark:block"
           />
         </Link>
 

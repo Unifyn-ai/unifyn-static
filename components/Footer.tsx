@@ -1,9 +1,6 @@
 "use client";
-import { useTheme } from './ThemeProvider';
 
 export function Footer() {
-  const { isDark } = useTheme();
-  const logoSrc = isDark ? '/assets/img/logo-dark.svg' : '/assets/img/logo-light.svg';
   return (
     <footer className="relative border-t border-slate-200/60 dark:border-slate-800/50 py-8 sm:py-10 md:py-12" role="contentinfo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,14 +8,14 @@ export function Footer() {
         <div className="mb-4 sm:mb-4">
           <a href="/" className="inline-flex items-center mb-4 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-950 rounded-lg" aria-label="Unifyn home">
             <img
-              src={logoSrc}
-              onError={(e) => {
-                if ((e.currentTarget as HTMLImageElement).src.includes('logo-light.svg')) {
-                  (e.currentTarget as HTMLImageElement).src = '/assets/img/logo-dark.svg';
-                }
-              }}
+              src="/assets/img/logo-light.svg"
               alt="Unifyn - Unified Finance Superapp"
-              className="h-7 sm:h-8 w-auto"
+              className="h-7 sm:h-8 w-auto block dark:hidden"
+            />
+            <img
+              src="/assets/img/logo-dark.svg"
+              alt="Unifyn - Unified Finance Superapp"
+              className="h-7 sm:h-8 w-auto hidden dark:block"
             />
           </a>
           <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Global <strong>unified finance platform</strong> and <strong>broker‑agnostic trading platform</strong>.</p>
