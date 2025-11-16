@@ -63,9 +63,9 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
         className={`fixed inset-0 z-50 transition-opacity duration-300 ${openName === 'login' ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         aria-hidden={openName !== 'login'}
       >
-        <div className="absolute inset-0 bg-black/60 dark:bg-black/70 backdrop-blur-md" data-close-modal></div>
+        <div className="absolute inset-0 bg-black/60 dark:bg-black/70 sm:backdrop-blur-md" data-close-modal></div>
         <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-8">
-          <div className={`relative bg-white dark:bg-slate-900 rounded-3xl shadow-2xl shadow-cyan-500/10 w-full max-w-lg border border-slate-200 dark:border-slate-700/50 backdrop-blur-xl transform transition-all duration-300 ${openName === 'login' ? 'scale-100' : 'scale-95'}`}>
+          <div className={`relative bg-white dark:bg-slate-900 rounded-3xl shadow-2xl shadow-cyan-500/10 w-full max-w-lg border border-slate-200 dark:border-slate-700/50 sm:backdrop-blur-xl transition-all duration-300 sm:transform ${openName === 'login' ? 'sm:scale-100' : 'sm:scale-95'}`}>
             <button data-close-modal className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/5 dark:bg-slate-800/50 hover:bg-black/10 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-white transition-all flex items-center justify-center group" aria-label="Close">
               <svg className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
@@ -156,9 +156,9 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
         className={`fixed inset-0 z-50 transition-opacity duration-300 ${openName === 'connect-broker' ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         aria-hidden={openName !== 'connect-broker'}
       >
-        <div className="absolute inset-0 bg-black/60 dark:bg-black/70 backdrop-blur-md" data-close-modal></div>
+        <div className="absolute inset-0 bg-black/60 dark:bg-black/70 sm:backdrop-blur-md" data-close-modal></div>
         <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-8">
-          <div className={`relative bg-white dark:bg-slate-900 rounded-3xl shadow-2xl shadow-cyan-500/10 w-full max-w-lg border border-slate-200 dark:border-slate-700/50 backdrop-blur-xl transform transition-all duration-300 ${openName === 'connect-broker' ? 'scale-100' : 'scale-95'}`}>
+          <div className={`relative bg-white dark:bg-slate-900 rounded-3xl shadow-2xl shadow-cyan-500/10 w-full max-w-lg border border-slate-200 dark:border-slate-700/50 sm:backdrop-blur-xl transition-all duration-300 sm:transform ${openName === 'connect-broker' ? 'sm:scale-100' : 'sm:scale-95'}`}>
             <button data-close-modal className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/5 dark:bg-slate-800/50 hover:bg-black/10 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-white transition-all flex items-center justify-center group" aria-label="Close">
               <svg className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
@@ -203,9 +203,9 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
         className={`fixed inset-0 z-50 transition-opacity duration-300 ${openName === 'signup' ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         aria-hidden={openName !== 'signup'}
       >
-        <div className="absolute inset-0 bg-black/60 dark:bg-black/70 backdrop-blur-md" data-close-modal></div>
+        <div className="absolute inset-0 bg-black/60 dark:bg-black/70 sm:backdrop-blur-md" data-close-modal></div>
         <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-8">
-          <div className={`relative bg-white dark:bg-slate-900 rounded-3xl shadow-2xl shadow-cyan-500/10 w-full max-w-lg border border-slate-200 dark:border-slate-700/50 backdrop-blur-xl transform transition-all duration-300 ${openName === 'signup' ? 'scale-100' : 'scale-95'}`}>
+          <div className={`relative bg-white dark:bg-slate-900 rounded-3xl shadow-2xl shadow-cyan-500/10 w-full max-w-lg border border-slate-200 dark:border-slate-700/50 sm:backdrop-blur-xl transition-all duration-300 sm:transform ${openName === 'signup' ? 'sm:scale-100' : 'sm:scale-95'}`}>
             <button data-close-modal className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/5 dark:bg-slate-800/50 hover:bg-black/10 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-white transition-all flex items-center justify-center group" aria-label="Close">
               <svg className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
