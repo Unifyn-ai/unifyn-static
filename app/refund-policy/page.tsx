@@ -1,6 +1,4 @@
-import { use } from 'react';
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
+import { HeaderIfVisible, FooterIfVisible } from '../../components/ChromeVisibility';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-static';
@@ -24,13 +22,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RefundPolicyPage(props: { searchParams?: Promise<{ [key: string]: string | string[] | undefined }> }) {
-  const searchParams = props.searchParams ? use(props.searchParams) : {};
-  const sourceParamRaw = Array.isArray(searchParams?.source) ? searchParams.source[0] : searchParams?.source;
-  const hideChrome = typeof sourceParamRaw === 'string' && sourceParamRaw.toLowerCase() === 'mobile';
+export default function RefundPolicyPage() {
   return (
     <>
-      {!hideChrome && <Header />}
+      <HeaderIfVisible />
       <main id="content" className="relative pt-28 pb-12" role="main">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <article className="p-8 lg:p-12 max-w-none" role="article" aria-labelledby="refund-heading">
@@ -48,7 +43,7 @@ export default function RefundPolicyPage(props: { searchParams?: Promise<{ [key:
           </article>
         </div>
       </main>
-      {!hideChrome && <Footer />}
+      <FooterIfVisible />
     </>
   );
 }

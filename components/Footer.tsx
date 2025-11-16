@@ -31,9 +31,9 @@ export function Footer() {
             <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
             <a href="/privacy" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Privacy Policy</a>
             <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-            <a href="/cookie-policy" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Cookie Policy</a>
+            <a href="/cookie-policy/" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Cookie Policy</a>
             <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-            <a href="/refund-policy" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Refund & Billing</a>
+            <a href="/refund-policy/" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Refund & Billing</a>
             <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
             <a href="/data-deletion" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Data Deletion</a>
             <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>

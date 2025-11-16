@@ -33,7 +33,7 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 md:bg-transparent md:backdrop-blur-none backdrop-blur-lg md:border-b-0 border-b border-slate-200/60 dark:border-slate-800/50" role="banner">
-      <nav className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 md:py-6 grid items-center grid-cols-[auto_1fr_auto]" aria-label="Main navigation">
+      <nav className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 md:py-6 grid items-center grid-cols-[auto_1fr_auto] md:grid-cols-[1fr_auto_1fr]" aria-label="Main navigation">
         {/* Logo - LEFT SIDE */}
         <Link href="/" className="flex items-center justify-self-start focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-950 rounded-lg shrink-0">
           <img
@@ -89,7 +89,7 @@ export function Header() {
         {/* Mobile Menu Button - RIGHT SIDE */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden justify-self-end p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-lg -mr-1"
+          className="md:hidden col-start-3 row-start-1 md:col-start-auto md:row-start-auto justify-self-end p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-lg -mr-1"
           aria-label="Toggle mobile menu"
           aria-expanded={mobileMenuOpen}
         >

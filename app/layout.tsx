@@ -212,9 +212,29 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   };
 
   return (
-    <html lang="en" className={`scroll-smooth ${inter.variable} dark`} suppressHydrationWarning>
+    <html lang="en" className={`scroll-smooth ${inter.variable}`} suppressHydrationWarning>
       <head>
         <meta name="description" content="Unifyn is a global unified finance platform — a broker agnostic trading app designed to connect your existing broker accounts. Experience unified finance with one seamless trading interface, analytics, and ledger." />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+;(() => {
+  try {
+    var d = document.documentElement;
+    var search = new URLSearchParams(location.search);
+    var p = (search.get('theme') || '').toLowerCase();
+    var c = (document.cookie.match(/(?:^|; )theme=([^;]+)/) || [])[1];
+    var s = null;
+    try { s = localStorage.getItem('theme'); } catch {}
+    var v = (p || c || s || 'system');
+    if (v !== 'light' && v !== 'dark' && v !== 'system') v = 'system';
+    var isDark = v === 'dark' || (v === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    d.classList.toggle('dark', !!isDark);
+    d.setAttribute('data-theme-mode', v);
+  } catch (e) {}
+})();`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

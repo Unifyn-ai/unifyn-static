@@ -1,6 +1,4 @@
-import { use } from 'react';
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
+import { HeaderIfVisible, FooterIfVisible } from '../../components/ChromeVisibility';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-static';
@@ -34,13 +32,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PrivacyPage(props: { searchParams?: Promise<{ [key: string]: string | string[] | undefined }> }) {
-  const searchParams = props.searchParams ? use(props.searchParams) : {};
-  const sourceParamRaw = Array.isArray(searchParams?.source) ? searchParams.source[0] : searchParams?.source;
-  const hideChrome = typeof sourceParamRaw === 'string' && sourceParamRaw.toLowerCase() === 'mobile';
+export default function PrivacyPage() {
   return (
     <>
-      {!hideChrome && <Header />}
+      <HeaderIfVisible />
       <main id="content" className="relative pt-28 pb-12" role="main">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <article className="p-8 lg:p-12 max-w-none" role="article" aria-labelledby="privacy-heading">
@@ -56,7 +51,7 @@ export default function PrivacyPage(props: { searchParams?: Promise<{ [key: stri
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">7. Data Sharing and Subprocessors</h2><p>We do <strong>not</strong> sell personal data. We share information only with:</p><ul className="list-disc pl-6 space-y-2"><li><strong>Hosting & Infrastructure:</strong> Cloud providers and edge networks (e.g., Cloudflare) to host and deliver our services.</li><li><strong>Payments:</strong> Processors such as Stripe to handle payments, billing, and invoicing.</li><li><strong>Analytics & Telemetry:</strong> Privacy‑respecting analytics (e.g., GA4 or Plausible) and logging to understand usage and reliability (where enabled).</li><li><strong>Customer Support & Communications:</strong> Tools used to respond to your requests.</li><li><strong>Legal & Compliance:</strong> When required by law or to protect rights, safety, or integrity.</li></ul></section>
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">8. Security</h2><p>We implement industry‑standard measures, including:</p><ul className="list-disc pl-6 space-y-2"><li>TLS/HTTPS encryption in transit.</li><li>Encryption at rest for sensitive data (e.g., tokens, secrets).</li><li>Least‑privilege access controls and audit logging.</li><li>Segregation of environments and regular reviews.</li></ul></section>
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">9. Data Retention</h2><p>We retain data only for as long as necessary to provide services and for legitimate business or legal purposes. You may request deletion at any time (see Section 12). OAuth tokens and integration metadata are deleted when you disconnect an integration or delete your account.</p></section>
-              <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">10. Cookies & Analytics</h2><p>We use essential cookies for authentication and security. Where enabled, we use analytics to understand product usage. You can manage preferences in your browser and via our Cookie Policy.</p><p>See our <a href="/cookie-policy" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">Cookie Policy</a> for details.</p></section>
+              <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">10. Cookies & Analytics</h2><p>We use essential cookies for authentication and security. Where enabled, we use analytics to understand product usage. You can manage preferences in your browser and via our Cookie Policy.</p><p>See our <a href="/cookie-policy/" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">Cookie Policy</a> for details.</p></section>
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">11. Your Rights</h2><p>Depending on your location, you may have rights to access, correct, delete, or export your data; object to or restrict certain processing; and withdraw consent. California residents have additional rights under the CPRA. We do not sell or share personal information for cross‑context behavioral advertising.</p><p>Contact <a href="mailto:privacy@unifyn.trade" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">privacy@unifyn.trade</a> to exercise rights or with questions.</p></section>
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">12. Data Deletion</h2><p>You can request account and data deletion at any time. See <a href="/data-deletion" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">Data Deletion</a> for step‑by‑step instructions. You can also revoke Google permissions in your Google Account settings.</p></section>
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">13. International Transfers</h2><p>Your information may be processed in locations where we and our providers operate. We use appropriate safeguards for cross‑border transfers where required by law.</p></section>
@@ -68,7 +63,7 @@ export default function PrivacyPage(props: { searchParams?: Promise<{ [key: stri
           </article>
         </div>
       </main>
-      {!hideChrome && <Footer />}
+      <FooterIfVisible />
     </>
   );
 }

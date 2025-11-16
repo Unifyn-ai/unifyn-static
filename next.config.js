@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
 const nextConfig = {
-  output: 'export',
+  // Use static export only in production builds. In dev, disable to avoid chunk 404s.
+  ...(isProd ? { output: 'export' } : {}),
   distDir: '.next',
   images: { unoptimized: true },
   trailingSlash: true,
