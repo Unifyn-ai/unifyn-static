@@ -1,5 +1,6 @@
 "use client";
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useTheme } from './ThemeProvider';
 import { useUser } from './UserProvider';
 import { useState, useEffect } from 'react';
@@ -8,12 +9,18 @@ export function Header() {
   const { mode, setMode } = useTheme();
   const { user, isAuthenticated, logout, isLoading } = useUser();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   // Get user display name (name or ID)
   const userDisplayName = user?.name || user?.id || 'User';
 
-  const baseNavLinkClass =
-    "px-4 py-1.5 rounded-full text-sm text-slate-700 dark:text-slate-300 hover:bg-black/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:bg-black/5 dark:focus-visible:bg-white/10 focus-visible:ring-offset-1 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950";
+  // Get nav link class
+  const getNavLinkClass = (href: string) => {
+    const baseClass = "px-4 py-1.5 rounded-full text-sm transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-1 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950";
+    const inactiveClass = "text-slate-700 dark:text-slate-300 hover:bg-black/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white focus-visible:bg-black/5 dark:focus-visible:bg-white/10";
+    
+    return `${baseClass} ${inactiveClass}`;
+  };
 
   // Close menu on escape key and prevent body scroll
   useEffect(() => {
@@ -54,34 +61,25 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-2 justify-self-center rounded-full px-2 py-1.5 backdrop-blur-xl border border-slate-200/60 dark:border-slate-700/30 shadow-lg" role="navigation" aria-label="Primary">
-          <Link href="/" className={baseNavLinkClass} aria-label="Go to home page">Home</Link>
-          <Link href="/#features" className={baseNavLinkClass} aria-label="View platform features">Features</Link>
-          <Link href="/#security" className={baseNavLinkClass} aria-label="Learn about security">Security</Link>
-          <Link href="/#contact" className={baseNavLinkClass} aria-label="Contact us">Contact</Link>
+          <Link href="/" className={getNavLinkClass('/')} aria-label="Go to home page">Home</Link>
+          <Link href="/#features" className={getNavLinkClass('/#features')} aria-label="View platform features">Features</Link>
+          <Link href="/#security" className={getNavLinkClass('/#security')} aria-label="Learn about security">Security</Link>
+          <Link href="/#contact" className={getNavLinkClass('/#contact')} aria-label="Contact us">Contact</Link>
           {isAuthenticated && (
-            <Link href="/trade" className={baseNavLinkClass} aria-label="Go to trading platform">Trade</Link>
+            <Link href="/trade" className={getNavLinkClass('/trade')} aria-label="Go to trading platform">Trade</Link>
           )}
         </div>
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-3 justify-self-end" role="navigation" aria-label="User actions">
           {!isLoading && !isAuthenticated && (
-            <>
-              <button 
-                data-open-modal="login" 
-                className="text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-950 rounded px-2 py-1"
-                aria-label="Login to Unifyn"
-              >
-                Login
-              </button>
-              <button 
-                data-open-modal="signup" 
-                className="rounded-full px-5 py-2 text-sm font-semibold bg-cyan-700 text-white hover:bg-cyan-800 transition-colors shadow-lg shadow-cyan-700/20 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-950"
-                aria-label="Sign up for Unifyn"
-              >
-                Signup
-              </button>
-            </>
+            <button 
+              data-open-modal="login" 
+              className="rounded-full px-5 py-2 text-sm font-semibold bg-cyan-700 text-white hover:bg-cyan-800 transition-colors shadow-lg shadow-cyan-700/20 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-950"
+              aria-label="Login or Register"
+            >
+              Login / Register
+            </button>
           )}
           {isAuthenticated && (
             <div className="flex items-center gap-3">
@@ -154,28 +152,28 @@ export function Header() {
               <Link 
                 href="/" 
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3.5 py-2.5 rounded-lg text-base font-medium text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all mb-1.5"
+                className="block px-3.5 py-2.5 rounded-lg text-base font-medium transition-all mb-1.5 text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
               >
                 Home
               </Link>
               <Link 
                 href="/#features" 
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3.5 py-2.5 rounded-lg text-base font-medium text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all mb-1.5"
+                className="block px-3.5 py-2.5 rounded-lg text-base font-medium transition-all mb-1.5 text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
               >
                 Features
               </Link>
               <Link 
                 href="/#security" 
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3.5 py-2.5 rounded-lg text-base font-medium text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all mb-1.5"
+                className="block px-3.5 py-2.5 rounded-lg text-base font-medium transition-all mb-1.5 text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
               >
                 Security
               </Link>
               <Link 
                 href="/#contact" 
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3.5 py-2.5 rounded-lg text-base font-medium text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all mb-1.5"
+                className="block px-3.5 py-2.5 rounded-lg text-base font-medium transition-all mb-1.5 text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
               >
                 Contact
               </Link>
@@ -183,7 +181,7 @@ export function Header() {
                 <Link 
                   href="/trade" 
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3.5 py-2.5 rounded-lg text-base font-medium text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all mb-1.5"
+                  className="block px-3.5 py-2.5 rounded-lg text-base font-medium transition-all mb-1.5 text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
                 >
                   Trade
                 </Link>
@@ -214,22 +212,13 @@ export function Header() {
             {/* Bottom Actions - Fixed */}
             <div className="p-4 border-t border-slate-200 dark:border-slate-700 shrink-0 space-y-3">
               {!isLoading && !isAuthenticated && (
-                <div className="flex gap-2">
-                  <button 
-                    data-open-modal="login" 
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex-1 px-4 py-2.5 rounded-lg text-sm font-medium text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all text-center border border-slate-200 dark:border-slate-700"
-                  >
-                    Login
-                  </button>
-                  <button 
-                    data-open-modal="signup" 
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex-1 rounded-lg px-4 py-2.5 text-sm font-semibold bg-cyan-600 text-white hover:bg-cyan-700 transition-colors"
-                  >
-                    Signup
-                  </button>
-                </div>
+                <button 
+                  data-open-modal="login" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full rounded-lg px-4 py-2.5 text-sm font-semibold bg-cyan-600 text-white hover:bg-cyan-700 transition-colors"
+                >
+                  Login / Register
+                </button>
               )}
               {isAuthenticated && (
                 <div className="space-y-2">

@@ -251,11 +251,8 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
           </button>
           <div className="relative px-8 py-8">
             <div className="mb-6">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 mb-4">
-                <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
-              </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Welcome back</h2>
-              <p className="text-sm text-slate-600 dark:text-slate-400">Sign in to your account to continue trading</p>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Welcome to Unifyn</h2>
+              <p className="text-sm text-slate-600 dark:text-slate-400">Login to your account or register as a new user</p>
             </div>
 
             <div className="space-y-3 mb-6">
@@ -405,16 +402,10 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
               )}
             </form>
 
-            <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700/50 text-center">
-              <p className="text-sm text-slate-600 dark:text-slate-400">
-                Don't have an account? <button data-open-modal="signup" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300 transition-colors font-medium">Sign up</button>
-              </p>
-            </div>
-            
-            <div className="mt-4">
+            <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700/50">
               <div className="flex items-start gap-3">
                 <div className="mt-0.5"><svg className="w-5 h-5 text-cyan-500/60" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"/></svg></div>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">We use secure authentication. Your data is protected. Read our <a href="/privacy" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300 transition-colors">Privacy Policy</a>.</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">New users will be automatically registered. Existing users can login with the same flow. Your data is protected. Read our <a href="/privacy" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300 transition-colors">Privacy Policy</a>.</p>
               </div>
               {(errorMsg || statusMsg) && (
                 <div className="mt-3 text-xs">

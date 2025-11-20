@@ -14,9 +14,6 @@ export function SignupModal({ open, onClose }: { open: boolean; onClose: () => v
           </button>
           <div className="relative px-8 py-8">
             <div className="mb-6">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 mb-4">
-                <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-              </div>
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Get early access</h2>
               <p className="text-sm text-slate-600 dark:text-slate-400">Be among the first to experience our global unified trading hub. No spam, unsubscribe anytime.</p>
             </div>

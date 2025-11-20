@@ -18,7 +18,7 @@ export function Footer() {
               className="h-7 sm:h-8 w-auto hidden dark:block"
             />
           </a>
-          <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Global <strong>unified finance platform</strong> and <strong>broker‑agnostic trading platform</strong>.</p>
+          <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Global <strong>unified finance platform</strong></p>
         </div>
 
         {/* Legal Links */}
