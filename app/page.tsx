@@ -320,7 +320,7 @@ export default function HomePage() {
             <div className="max-w-2xl mx-auto">
               <header className="text-center mb-6 sm:mb-8">
                 <h2 id="contact-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--color-heading)] mb-3 sm:mb-4 px-2">Contact Us</h2>
-                <p className="text-base sm:text-lg text-[var(--color-muted)] px-2 leading-relaxed">Support, partnerships, media — we're here to help with our <strong>unified finance platform</strong>.</p>
+                <p className="text-base sm:text-lg text-[var(--color-muted)] px-2 leading-relaxed">Support, partnerships, media — we're here to help.</p>
               </header>
               <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-sm p-5 sm:p-8">
                 <form className="space-y-4 sm:space-y-5" aria-label="Contact form">
@@ -375,9 +375,9 @@ export default function HomePage() {
                   <p className="text-sm sm:text-base text-[var(--color-muted)]">
                     Prefer email? <a href="mailto:support@unifyn.ai" className="text-[var(--hero-accent)] hover:opacity-90 transition-colors underline break-all">support@unifyn.ai</a>
                   </p>
-                  <address className="mt-2 not-italic text-sm sm:text-base text-[var(--color-muted)]">
+                  {/* <address className="mt-2 not-italic text-sm sm:text-base text-[var(--color-muted)]">
                     Bengaluru, Karnataka
-                  </address>
+                  </address> */}
                 </div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { googleSignIn } from '../../utils/google';
 import { appleSignIn } from '../../utils/apple';
 import {
@@ -14,6 +14,8 @@ import {
   verifyMobileOtp,
 } from '../../lib/auth';
 import { useUser } from '../UserProvider';
+import { CompleteProfileModal } from './CompleteProfileModal';
+import { VerifyMpinModal } from './VerifyMpinModal';
 
 export function LoginModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { refreshUser } = useUser();
@@ -30,6 +32,33 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
   const [statusMsg, setStatusMsg] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [resendTimer, setResendTimer] = useState(0);
+  
+  // Modal states for 2FA and profile completion
+  const [showVerifyMpinModal, setShowVerifyMpinModal] = useState(false);
+  const [showCompleteProfileModal, setShowCompleteProfileModal] = useState(false);
+  
+  // Ref for OTP first input auto-focus
+  const firstOtpInputRef = useRef<HTMLInputElement>(null);
+
+  // Reset all state when modal is closed
+  useEffect(() => {
+    if (!open) {
+      // Reset all form states
+      setMethod('mobile');
+      setMobile('');
+      setEmail('');
+      setOtp('');
+      setOtpPhase(false);
+      setSending(false);
+      setResending(false);
+      setVerifying(false);
+      setStatusMsg(null);
+      setErrorMsg(null);
+      setResendTimer(0);
+      setGoogleLoading(false);
+      setAppleLoading(false);
+    }
+  }, [open]);
 
   const onGoogle = useCallback(async () => {
     try {
@@ -98,6 +127,17 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
     }
   }, [resendTimer]);
 
+  // Auto-focus first OTP input when OTP phase starts
+  useEffect(() => {
+    if (otpPhase && open && firstOtpInputRef.current) {
+      // Small delay to ensure DOM is ready
+      const timer = setTimeout(() => {
+        firstOtpInputRef.current?.focus();
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [otpPhase, open]);
+
   const onSendOtp = useCallback(async () => {
     try {
       setErrorMsg(null);
@@ -146,13 +186,36 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       setErrorMsg(null);
       setStatusMsg(null);
       setVerifying(true);
+      
+      let resp: any;
       if (method === 'mobile') {
-        const resp = await verifyMobileOtp(mobile, otp, 'login');
+        resp = await verifyMobileOtp(mobile, otp, 'login');
         console.log('Verify Mobile OTP response:', resp);
       } else {
-        const resp = await verifyEmailOtp(email, otp, 'login');
+        resp = await verifyEmailOtp(email, otp, 'login');
         console.log('Verify Email OTP response:', resp);
       }
+      
+      // Check response structure
+      const responseData = resp?.d || resp;
+      
+      // Scenario 1: New user - needs profile completion
+      if (responseData?.isNewUser === true) {
+        setStatusMsg(responseData.message || 'Please complete your profile.');
+        onClose(); // Close login modal
+        setTimeout(() => setShowCompleteProfileModal(true), 300); // Open profile modal
+        return;
+      }
+      
+      // Scenario 2: Existing user - needs 2FA
+      if (responseData?.requires_2fa === true) {
+        setStatusMsg(responseData.message || 'Please enter your MPIN.');
+        onClose(); // Close login modal
+        setTimeout(() => setShowVerifyMpinModal(true), 300); // Open MPIN modal
+        return;
+      }
+      
+      // Scenario 3: Fully authenticated
       setStatusMsg('Verification complete.');
       
       // Refresh user state after successful authentication
@@ -168,13 +231,15 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
   }, [method, mobile, email, otp, refreshUser, onClose]);
 
   return (
-    <div
-      className={`fixed inset-0 z-50 transition-opacity duration-300 ${open ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-      aria-hidden={!open}
-    >
-      <div className="absolute inset-0 bg-black/60 dark:bg-black/70 sm:backdrop-blur-md" data-close-modal></div>
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-8">
-        <div className={`relative bg-white dark:bg-slate-900 rounded-3xl shadow-2xl shadow-cyan-500/10 w-full max-w-lg border border-slate-200 dark:border-slate-700/50 sm:backdrop-blur-xl transition-all duration-300 sm:transform ${open ? 'sm:scale-100' : 'sm:scale-95'}`}>
+    <>
+      {/* Main Login Modal */}
+      <div
+        className={`fixed inset-0 z-50 transition-opacity duration-300 ${open ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        aria-hidden={!open}
+      >
+        <div className="absolute inset-0 bg-black/60 dark:bg-black/70 sm:backdrop-blur-md" data-close-modal></div>
+        <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-8">
+          <div className={`relative bg-white dark:bg-slate-900 rounded-3xl shadow-2xl shadow-cyan-500/10 w-full max-w-lg border border-slate-200 dark:border-slate-700/50 sm:backdrop-blur-xl transition-all duration-300 sm:transform ${open ? 'sm:scale-100' : 'sm:scale-95'}`}>
           <button onClick={onClose} data-close-modal className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/5 dark:bg-slate-800/50 hover:bg-black/10 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-white transition-all flex items-center justify-center group" aria-label="Close">
             <svg className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
@@ -271,6 +336,7 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
                     {[0, 1, 2, 3, 4, 5].map((index) => (
                       <input
                         key={index}
+                        ref={index === 0 ? firstOtpInputRef : undefined}
                         id={index === 0 ? 'login-input' : undefined}
                         type="text"
                         inputMode="numeric"
@@ -354,7 +420,18 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
           </div>
         </div>
       </div>
-    </div>
+      </div>
+      
+      {/* Separate modals for profile completion and 2FA - rendered outside LoginModal wrapper */}
+      <CompleteProfileModal 
+        open={showCompleteProfileModal} 
+        onClose={() => setShowCompleteProfileModal(false)} 
+      />
+      <VerifyMpinModal 
+        open={showVerifyMpinModal} 
+        onClose={() => setShowVerifyMpinModal(false)} 
+      />
+    </>
   );
 }
 

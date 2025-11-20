@@ -80,5 +80,13 @@ export function authWithApple(idToken: string, mobile?: string) {
   return postJson('/auth/apple', body);
 }
 
+// ========== Profile Completion & 2FA ==========
+export function completeProfile(name: string, mpin: string) {
+  return postJson('/auth/complete-profile', { name, mpin });
+}
+
+export function verify2FA(mpin: string) {
+  return postJson('/auth/verify-2fa', { mpin });
+}
 
 
