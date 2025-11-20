@@ -4,6 +4,6 @@ Allow: /
 # Disallow non-existent API on static host
 Disallow: /api/
 
-Sitemap: https://unifyn.trade/sitemap.xml
+Sitemap: https://unifyn.ai/sitemap.xml
 
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Mobile App EULA | Unifyn',
     description: 'License terms for using Unifyn mobile apps on Apple iOS and Google Android.',
-    url: 'https://unifyn.trade/eula',
+    url: 'https://unifyn.ai/eula',
     type: 'website',
   },
   twitter: {
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     description: 'End User License Agreement for Unifyn mobile apps.',
   },
   alternates: {
-    canonical: 'https://unifyn.trade/eula',
+    canonical: 'https://unifyn.ai/eula',
   },
 };
 
@@ -40,7 +40,7 @@ export default function EulaPage() {
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">6. Updates</h2><p>We may from time to time provide updates or upgrades to the Apps, which may be automatically downloaded and installed. Updates are subject to this EULA unless accompanied by a separate license.</p></section>
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">7. Termination</h2><p>This EULA is effective until terminated. Your rights will terminate automatically if you breach the Terms of Use or this EULA. Upon termination, you must cease all use and delete the Apps from your devices.</p></section>
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">8. Disclaimer; Limitation of Liability</h2><p>The Apps are provided "as is" without warranties of any kind. To the maximum extent permitted by law, Unifyn disclaims all liability arising from your use of the Apps. See our <a href="/terms" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">Terms of Use</a> for more details.</p></section>
-              <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">9. Contact</h2><p>Questions? Contact <a href="mailto:legal@unifyn.trade" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">legal@unifyn.trade</a>.</p></section>
+              <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">9. Contact</h2><p>Questions? Contact <a href="mailto:legal@unifyn.ai" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">legal@unifyn.ai</a>.</p></section>
             </div>
           </article>
         </div>

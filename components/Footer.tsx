@@ -23,19 +23,19 @@ export function Footer() {
 
         {/* Legal Links */}
         <div className="flex flex-wrap items-center gap-2 text-xs mb-4">
-          <a href="/terms" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Terms of Service</a>
+          <a href="/terms/" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Terms of Service</a>
           <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-          <a href="/privacy" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Privacy Policy</a>
+          <a href="/privacy/" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Privacy Policy</a>
           <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
           <a href="/cookie-policy/" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Cookie Policy</a>
           <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
           <a href="/refund-policy/" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Refund & Billing</a>
           <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-          <a href="/data-deletion" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Data Deletion</a>
+          <a href="/data-deletion/" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Data Deletion</a>
           <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-          <a href="/eula" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Mobile App EULA</a>
+          <a href="/eula/" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Mobile App EULA</a>
           <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-          <a href="/support" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Support</a>
+          <a href="/support/" className=" text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none focus:text-cyan-600 dark:focus:text-cyan-400">Support</a>
         </div>
 
         {/* Bottom Section */}

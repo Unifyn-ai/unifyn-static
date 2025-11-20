@@ -22,7 +22,7 @@
 # http://* https://:splat 301
 
 # Redirect www to non-www (or vice versa)
-# https://www.unifyn.trade/* https://unifyn.trade/:splat 301
+# https://www.unifyn.ai/* https://unifyn.ai/:splat 301
 
 # Handle 404s - serve custom 404 page (must be last)
 /* /404.html 404

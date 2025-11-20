@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Cookie Policy | Unifyn',
     description: 'Details on cookies and similar technologies used by Unifyn and how to manage your preferences.',
-    url: 'https://unifyn.trade/cookie-policy',
+    url: 'https://unifyn.ai/cookie-policy',
     type: 'website',
   },
   twitter: {
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     description: 'What cookies we use and how to control your preferences.',
   },
   alternates: {
-    canonical: 'https://unifyn.trade/cookie-policy',
+    canonical: 'https://unifyn.ai/cookie-policy',
   },
 };
 
@@ -37,7 +37,7 @@ export default function CookiePolicyPage() {
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">3. Analytics</h2><p>We may use privacy‑respecting analytics (e.g., GA4 or Plausible). Where required, analytics cookies are only set after your consent. You can withdraw consent at any time by adjusting your browser settings or opting out within our app (if available).</p></section>
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">4. Managing Cookies</h2><ul className="list-disc pl-6 space-y-2"><li>Browser controls allow you to block or delete cookies. Note that disabling essential cookies may affect core functionality.</li><li>For Google Analytics, you can use the opt‑out browser add‑on provided by Google.</li></ul></section>
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">5. Changes</h2><p>We may update this Cookie Policy to reflect changes in our practices or legal requirements. Material changes will be communicated via in‑product notice where appropriate.</p></section>
-              <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">6. Contact</h2><p>Questions? Contact <a href="mailto:privacy@unifyn.trade" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">privacy@unifyn.trade</a>.</p></section>
+              <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">6. Contact</h2><p>Questions? Contact <a href="mailto:legal@unifyn.ai" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">legal@unifyn.ai</a>.</p></section>
             </div>
           </article>
         </div>

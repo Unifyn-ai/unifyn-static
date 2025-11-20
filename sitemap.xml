@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://unifyn.trade/</loc>
+    <loc>https://unifyn.ai/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://unifyn.trade/terms</loc>
+    <loc>https://unifyn.ai/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://unifyn.trade/privacy</loc>
+    <loc>https://unifyn.ai/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://unifyn.trade/cookie-policy</loc>
+    <loc>https://unifyn.ai/cookie-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://unifyn.trade/refund-policy</loc>
+    <loc>https://unifyn.ai/refund-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://unifyn.trade/data-deletion</loc>
+    <loc>https://unifyn.ai/data-deletion</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://unifyn.trade/eula</loc>
+    <loc>https://unifyn.ai/eula</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://unifyn.trade/support</loc>
+    <loc>https://unifyn.ai/support</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>

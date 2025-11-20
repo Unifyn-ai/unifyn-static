@@ -373,7 +373,7 @@ export default function HomePage() {
                 </form>
                 <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-[var(--card-border)]">
                   <p className="text-sm sm:text-base text-[var(--color-muted)]">
-                    Prefer email? <a href="mailto:support@unifyn.trade" className="text-[var(--hero-accent)] hover:opacity-90 transition-colors underline break-all">support@unifyn.trade</a>
+                    Prefer email? <a href="mailto:support@unifyn.ai" className="text-[var(--hero-accent)] hover:opacity-90 transition-colors underline break-all">support@unifyn.ai</a>
                   </p>
                   <address className="mt-2 not-italic text-sm sm:text-base text-[var(--color-muted)]">
                     Bengaluru, Karnataka

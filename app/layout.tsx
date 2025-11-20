@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://unifyn.trade'),
+  metadataBase: new URL('https://unifyn.ai'),
   title: {
     default: "Unifyn — Global Unified Finance Platform | Broker Agnostic Trading",
     template: '%s | Unifyn - Unified Finance Superapp'
@@ -54,12 +54,12 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://unifyn.trade',
+    canonical: 'https://unifyn.ai',
   },
   openGraph: {
     type: 'website',
     locale: 'en',
-    url: 'https://unifyn.trade',
+    url: 'https://unifyn.ai',
     siteName: 'Unifyn - Unified Finance Superapp',
     title: "Global Unified Finance Platform | Broker Agnostic Trading Platform",
     description: 'Experience unified finance with Unifyn — a global, broker agnostic trading app. Connect your existing broker accounts in one seamless interface.',
@@ -114,12 +114,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     '@graph': [
       {
         '@type': 'Organization',
-        '@id': 'https://unifyn.trade/#organization',
+        '@id': 'https://unifyn.ai/#organization',
         name: 'Infigon Electric Pvt Ltd',
-        url: 'https://unifyn.trade',
+        url: 'https://unifyn.ai',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://unifyn.trade/assets/img/logo-dark.svg',
+          url: 'https://unifyn.ai/assets/img/logo-dark.svg',
           width: 200,
           height: 60,
         },
@@ -131,7 +131,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ],
         contactPoint: {
           '@type': 'ContactPoint',
-          email: 'support@unifyn.trade',
+          email: 'support@unifyn.ai',
           contactType: 'Customer Support',
           areaServed: 'Worldwide',
           availableLanguage: ['English', 'Hindi'],
@@ -144,23 +144,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       },
       {
         '@type': 'WebSite',
-        '@id': 'https://unifyn.trade/#website',
-        url: 'https://unifyn.trade',
+        '@id': 'https://unifyn.ai/#website',
+        url: 'https://unifyn.ai',
         name: 'Unifyn - Unified Finance Superapp',
         description: 'Broker agnostic trading platform connecting multiple brokers in one unified interface',
         publisher: {
-          '@id': 'https://unifyn.trade/#organization',
+          '@id': 'https://unifyn.ai/#organization',
         },
         potentialAction: {
           '@type': 'SearchAction',
-          target: 'https://unifyn.trade/?s={search_term_string}',
+          target: 'https://unifyn.ai/?s={search_term_string}',
           'query-input': 'required name=search_term_string',
         },
         inLanguage: 'en',
       },
       {
         '@type': 'SoftwareApplication',
-        '@id': 'https://unifyn.trade/#software',
+        '@id': 'https://unifyn.ai/#software',
         name: 'Unifyn',
         applicationCategory: 'FinanceApplication',
         applicationSubCategory: 'Trading Platform',
@@ -179,7 +179,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           'Price Alerts and Notifications',
           'Customizable Trading Interface',
         ],
-        screenshot: 'https://unifyn.trade/assets/img/logo-dark.svg',
+        screenshot: 'https://unifyn.ai/assets/img/logo-dark.svg',
         aggregateRating: {
           '@type': 'AggregateRating',
           ratingValue: '4.8',
@@ -188,24 +188,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       },
       {
         '@type': 'WebPage',
-        '@id': 'https://unifyn.trade/#webpage',
-        url: 'https://unifyn.trade',
+        '@id': 'https://unifyn.ai/#webpage',
+        url: 'https://unifyn.ai',
         name: "Global Unified Finance Platform | Broker Agnostic Trading Platform",
         description: 'Unified finance made simple with Unifyn - broker agnostic trading app. Connect multiple brokers, trade smarter.',
         isPartOf: {
-          '@id': 'https://unifyn.trade/#website',
+          '@id': 'https://unifyn.ai/#website',
         },
         about: {
-          '@id': 'https://unifyn.trade/#organization',
+          '@id': 'https://unifyn.ai/#organization',
         },
         primaryImageOfPage: {
           '@type': 'ImageObject',
-          url: 'https://unifyn.trade/assets/img/logo-dark.svg',
+          url: 'https://unifyn.ai/assets/img/logo-dark.svg',
         },
         inLanguage: 'en',
         potentialAction: {
           '@type': 'ReadAction',
-          target: ['https://unifyn.trade'],
+          target: ['https://unifyn.ai'],
         },
       },
     ],

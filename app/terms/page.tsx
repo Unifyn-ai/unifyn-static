@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Terms of Use | Unifyn',
     description: 'Terms governing use of Unifyn across web and mobile, including payments and integrations.',
-    url: 'https://unifyn.trade/terms',
+    url: 'https://unifyn.ai/terms',
     type: 'website',
   },
   twitter: {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description: 'Terms for using Unifyn, subscriptions, payments, mobile apps, and integrations.',
   },
   alternates: {
-    canonical: 'https://unifyn.trade/terms',
+    canonical: 'https://unifyn.ai/terms',
   },
 };
 
@@ -55,7 +55,7 @@ export default function TermsPage() {
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">13. Mobile Apps & App Store Terms</h2><ul className="list-disc pl-6 space-y-2"><li><strong>License:</strong> Subject to these Terms, we grant a limited, non‑transferable license to install and use our mobile apps on devices you own or control.</li><li><strong>Apple:</strong> If you download from the App Store, you agree to Apple’s terms; Apple is not responsible for support or warranties except as required by law. You acknowledge Apple’s standard EULA applies to your use.</li><li><strong>Google:</strong> If you download from Google Play, you agree to Google Play’s terms; Google is not responsible for support or warranties except as required by law.</li><li>See our dedicated <a href="/eula" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">Mobile App EULA</a> for additional end‑user license terms.</li></ul></section>
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">14. Changes to Terms</h2><p>We may update these Terms to reflect changes to our services or legal requirements. If changes are material, we will provide reasonable notice (e.g., in‑product notice). Your continued use after changes take effect constitutes acceptance.</p></section>
               <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">15. Governing Law & Disputes</h2><p>These Terms are governed by applicable laws. Courts with appropriate jurisdiction will have exclusive jurisdiction over disputes, subject to any mandatory consumer rights under applicable law.</p></section>
-              <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">16. Contact</h2><p>For questions about these Terms, email <a href="mailto:legal@unifyn.trade" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">legal@unifyn.trade</a>. For privacy matters, see our <a href="/privacy" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">Privacy Policy</a>.</p></section>
+              <section><h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mt-8 mb-4">16. Contact</h2><p>For questions about these Terms, email <a href="mailto:legal@unifyn.ai" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">legal@unifyn.ai</a>. For privacy matters, see our <a href="/privacy" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">Privacy Policy</a>.</p></section>
             </div>
           </article>
         </div>
