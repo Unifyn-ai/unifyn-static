@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { completeProfile } from '../../lib/auth';
 import { useUser } from '../UserProvider';
 import { logger } from '../../utils/logger';
@@ -12,6 +13,7 @@ export function CompleteProfileModal({
   open: boolean; 
   onClose: () => void;
 }) {
+  const router = useRouter();
   const { refreshUser } = useUser();
   const [name, setName] = useState('');
   const [profileMpin, setProfileMpin] = useState('');
@@ -66,14 +68,15 @@ export function CompleteProfileModal({
       // Refresh user state after successful profile completion
       await refreshUser();
       
-      // Close modal after successful completion
-      setTimeout(() => onClose(), 500);
+      // Close modal and redirect to trade page
+      onClose();
+      router.push('/trade');
     } catch (e: any) {
       setErrorMsg(e?.message || 'Failed to complete profile.');
     } finally {
       setCompletingProfile(false);
     }
-  }, [name, profileMpin, refreshUser, onClose]);
+  }, [name, profileMpin, refreshUser, onClose, router]);
 
   return (
     <div

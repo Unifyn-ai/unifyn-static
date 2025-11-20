@@ -3,9 +3,20 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SHOW_BROKER_UI } from './config';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useUser } from '../components/UserProvider';
 
 export default function HomePage() {
+  const router = useRouter();
+  const { isAuthenticated, isLoading } = useUser();
   const [hideChrome, setHideChrome] = useState(false);
+
+  // Redirect authenticated users to /trade
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      router.push('/trade');
+    }
+  }, [isAuthenticated, isLoading, router]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {

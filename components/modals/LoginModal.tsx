@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { googleSignIn } from '../../utils/google';
 import { appleSignIn } from '../../utils/apple';
 import {
@@ -19,6 +20,7 @@ import { CompleteProfileModal } from './CompleteProfileModal';
 import { VerifyMpinModal } from './VerifyMpinModal';
 
 export function LoginModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const router = useRouter();
   const { refreshUser } = useUser();
   const [googleLoading, setGoogleLoading] = useState(false);
   const [appleLoading, setAppleLoading] = useState(false);
@@ -82,8 +84,9 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       // Refresh user state after successful authentication
       await refreshUser();
       
-      // Close modal after successful login
-      setTimeout(() => onClose(), 500);
+      // Close modal and redirect to trade page
+      onClose();
+      router.push('/trade');
     } catch (e: any) {
       logger.error('[LoginModal] Google sign-in error:', {
         message: e?.message,
@@ -94,7 +97,7 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
     } finally {
       setGoogleLoading(false);
     }
-  }, [refreshUser, onClose]);
+  }, [refreshUser, onClose, router]);
 
   const onApple = useCallback(async () => {
     try {
@@ -111,14 +114,15 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       // Refresh user state after successful authentication
       await refreshUser();
       
-      // Close modal after successful login
-      setTimeout(() => onClose(), 500);
+      // Close modal and redirect to trade page
+      onClose();
+      router.push('/trade');
     } catch (e: any) {
       setErrorMsg(e?.message || 'Apple sign-in failed.');
     } finally {
       setAppleLoading(false);
     }
-  }, [refreshUser, onClose]);
+  }, [refreshUser, onClose, router]);
 
   // Timer effect for resend OTP
   useEffect(() => {
@@ -222,14 +226,15 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       // Refresh user state after successful authentication
       await refreshUser();
       
-      // Close modal after successful login
-      setTimeout(() => onClose(), 500);
+      // Close modal and redirect to trade page
+      onClose();
+      router.push('/trade');
     } catch (e: any) {
       setErrorMsg(e?.message || 'Failed to verify OTP.');
     } finally {
       setVerifying(false);
     }
-  }, [method, mobile, email, otp, refreshUser, onClose]);
+  }, [method, mobile, email, otp, refreshUser, onClose, router]);
 
   return (
     <>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { verify2FA } from '../../lib/auth';
 import { useUser } from '../UserProvider';
 import { logger } from '../../utils/logger';
@@ -12,6 +13,7 @@ export function VerifyMpinModal({
   open: boolean; 
   onClose: () => void;
 }) {
+  const router = useRouter();
   const { refreshUser } = useUser();
   const [mpin, setMpin] = useState('');
   const [verifying2FA, setVerifying2FA] = useState(false);
@@ -46,14 +48,15 @@ export function VerifyMpinModal({
       // Refresh user state after successful authentication
       await refreshUser();
       
-      // Close modal after successful login
-      setTimeout(() => onClose(), 500);
+      // Close modal and redirect to trade page
+      onClose();
+      router.push('/trade');
     } catch (e: any) {
       setErrorMsg(e?.message || 'Failed to verify MPIN.');
     } finally {
       setVerifying2FA(false);
     }
-  }, [mpin, refreshUser, onClose]);
+  }, [mpin, refreshUser, onClose, router]);
 
   return (
     <div
