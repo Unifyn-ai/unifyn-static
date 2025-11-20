@@ -13,8 +13,10 @@ import {
   verifyEmailOtp,
   verifyMobileOtp,
 } from '../../lib/auth';
+import { useUser } from '../UserProvider';
 
 export function LoginModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const { refreshUser } = useUser();
   const [googleLoading, setGoogleLoading] = useState(false);
   const [appleLoading, setAppleLoading] = useState(false);
   const [method, setMethod] = useState<'mobile' | 'email'>('mobile');
@@ -46,6 +48,12 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       console.log('[LoginModal] Backend /auth/google response:', resp);
       
       setStatusMsg('Google authentication complete.');
+      
+      // Refresh user state after successful authentication
+      await refreshUser();
+      
+      // Close modal after successful login
+      setTimeout(() => onClose(), 500);
     } catch (e: any) {
       console.error('[LoginModal] Google sign-in error:', {
         message: e?.message,
@@ -56,7 +64,7 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
     } finally {
       setGoogleLoading(false);
     }
-  }, []);
+  }, [refreshUser, onClose]);
 
   const onApple = useCallback(async () => {
     try {
@@ -69,12 +77,18 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       const resp = await authWithApple(idToken);
       console.log('Backend /auth/apple response:', resp);
       setStatusMsg('Apple authentication complete.');
+      
+      // Refresh user state after successful authentication
+      await refreshUser();
+      
+      // Close modal after successful login
+      setTimeout(() => onClose(), 500);
     } catch (e: any) {
       setErrorMsg(e?.message || 'Apple sign-in failed.');
     } finally {
       setAppleLoading(false);
     }
-  }, []);
+  }, [refreshUser, onClose]);
 
   // Timer effect for resend OTP
   useEffect(() => {
@@ -139,13 +153,19 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
         const resp = await verifyEmailOtp(email, otp, 'login');
         console.log('Verify Email OTP response:', resp);
       }
-      setStatusMsg('Verification complete. See console for tokens/response.');
+      setStatusMsg('Verification complete.');
+      
+      // Refresh user state after successful authentication
+      await refreshUser();
+      
+      // Close modal after successful login
+      setTimeout(() => onClose(), 500);
     } catch (e: any) {
       setErrorMsg(e?.message || 'Failed to verify OTP.');
     } finally {
       setVerifying(false);
     }
-  }, [method, mobile, email, otp]);
+  }, [method, mobile, email, otp, refreshUser, onClose]);
 
   return (
     <div

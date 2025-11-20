@@ -9,6 +9,7 @@ async function postJson<T = any>(
 ): Promise<T> {
   const res = await fetch(`${API_BASE_URL}${path}`, {
     method: 'POST',
+    credentials: 'include', // Include cookies for authentication
     headers: {
       'Content-Type': 'application/json',
       ...(init?.headers || {}),
