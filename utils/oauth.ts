@@ -6,6 +6,7 @@ import {
   GOOGLE_CLIENT_ID,
   GOOGLE_REDIRECT_URI,
 } from '../app/config';
+import { logger } from './logger';
 
 export type OauthSource = 'google-id-token' | 'apple-id-token';
 
@@ -37,7 +38,7 @@ export function buildGoogleAuthUrl() {
   const redirectUri =
     GOOGLE_REDIRECT_URI || defaultRedirect('/auth/callback/google');
   
-  console.log('[OAuth] Building Google Auth URL:', {
+  logger.log('[OAuth] Building Google Auth URL:', {
     clientId: clientId?.substring(0, 20) + '...',
     redirectUri,
     hasEnvRedirect: !!GOOGLE_REDIRECT_URI,
@@ -58,7 +59,7 @@ export function buildGoogleAuthUrl() {
   url.searchParams.set('nonce', randomString());
   url.searchParams.set('state', randomString());
   
-  console.log('[OAuth] Generated OAuth URL:', url.toString());
+  logger.log('[OAuth] Generated OAuth URL:', url.toString());
   return url.toString();
 }
 
@@ -110,7 +111,7 @@ function openBlankCenteredPopup(name: string) {
 
 export function oauthPopup(expectedSource: OauthSource, href: string): Promise<string> {
   return new Promise<string>((resolve, reject) => {
-    console.log('[OAuth Popup] Starting OAuth flow:', {
+    logger.log('[OAuth Popup] Starting OAuth flow:', {
       expectedSource,
       href,
       timestamp: new Date().toISOString()
@@ -122,16 +123,16 @@ export function oauthPopup(expectedSource: OauthSource, href: string): Promise<s
     try {
       popup = openBlankCenteredPopup(expectedSource);
       if (!popup) {
-        console.error('[OAuth Popup] Popup blocked by browser');
+        logger.error('[OAuth Popup] Popup blocked by browser');
         window.location.href = href;
         reject(new Error('Popup blocked; redirected to provider in this tab.'));
         return;
       }
-      console.log('[OAuth Popup] Popup opened successfully');
+      logger.log('[OAuth Popup] Popup opened successfully');
       popup.location.href = href;
-      console.log('[OAuth Popup] Navigating popup to OAuth URL');
+      logger.log('[OAuth Popup] Navigating popup to OAuth URL');
     } catch (err) {
-      console.error('[OAuth Popup] Error opening popup:', err);
+      logger.error('[OAuth Popup] Error opening popup:', err);
       try {
         window.location.href = href;
         reject(new Error('Unable to open popup; redirected to provider in this tab.'));
@@ -148,28 +149,28 @@ export function oauthPopup(expectedSource: OauthSource, href: string): Promise<s
         window.removeEventListener('message', onMessage);
         
         if (!messageReceived) {
-          console.error('[OAuth Popup] Popup closed without receiving message', {
+          logger.error('[OAuth Popup] Popup closed without receiving message', {
             expectedSource,
             messageReceived,
             timeSinceStart: Date.now()
           });
           reject(new Error('Popup closed before completing sign-in. Check redirect URI configuration.'));
         } else {
-          console.log('[OAuth Popup] Popup closed normally after receiving message');
+          logger.log('[OAuth Popup] Popup closed normally after receiving message');
         }
       }
     }, 300);
 
     function onMessage(event: MessageEvent) {
       try {
-        console.log('[OAuth Popup] Message received:', {
+        logger.log('[OAuth Popup] Message received:', {
           origin: event.origin,
           expectedOrigin: window.location.origin,
           data: event.data
         });
 
         if (event.origin !== window.location.origin) {
-          console.warn('[OAuth Popup] Message from wrong origin, ignoring');
+          logger.warn('[OAuth Popup] Message from wrong origin, ignoring');
           return;
         }
         
@@ -177,7 +178,7 @@ export function oauthPopup(expectedSource: OauthSource, href: string): Promise<s
         
         // Check for backend message format: { type, source, payload }
         if (data?.type === 'google-signin-callback' && data?.source === 'unifyn-login-service') {
-          console.log('[OAuth Popup] Backend message format detected');
+          logger.log('[OAuth Popup] Backend message format detected');
           const payload = data.payload || {};
           
           messageReceived = true;
@@ -185,29 +186,29 @@ export function oauthPopup(expectedSource: OauthSource, href: string): Promise<s
           window.removeEventListener('message', onMessage);
           
           if (payload.error) {
-            console.error('[OAuth Popup] Error from backend:', payload.error_description || payload.error);
+            logger.error('[OAuth Popup] Error from backend:', payload.error_description || payload.error);
             reject(new Error(payload.error_description || payload.error));
           } else if (payload.id_token) {
-            console.log('[OAuth Popup] ID token received successfully from backend');
+            logger.log('[OAuth Popup] ID token received successfully from backend');
             resolve(payload.id_token as string);
           } else {
-            console.error('[OAuth Popup] No id_token in backend payload:', payload);
+            logger.error('[OAuth Popup] No id_token in backend payload:', payload);
             reject(new Error('No id_token received from backend.'));
           }
           
           // Client closes popup after receiving message from backend
           try {
-            console.log('[OAuth Popup] Closing popup from client');
+            logger.log('[OAuth Popup] Closing popup from client');
             popup?.close();
           } catch (e) {
-            console.warn('[OAuth Popup] Could not close popup:', e);
+            logger.warn('[OAuth Popup] Could not close popup:', e);
           }
           return;
         }
         
         // Check for Apple callback format
         if (data?.type === 'apple-signin-callback' && data?.source === 'unifyn-login-service') {
-          console.log('[OAuth Popup] Apple backend message format detected');
+          logger.log('[OAuth Popup] Apple backend message format detected');
           const payload = data.payload || {};
           
           messageReceived = true;
@@ -215,65 +216,65 @@ export function oauthPopup(expectedSource: OauthSource, href: string): Promise<s
           window.removeEventListener('message', onMessage);
           
           if (payload.error) {
-            console.error('[OAuth Popup] Error from backend:', payload.error_description || payload.error);
+            logger.error('[OAuth Popup] Error from backend:', payload.error_description || payload.error);
             reject(new Error(payload.error_description || payload.error));
           } else if (payload.id_token) {
-            console.log('[OAuth Popup] ID token received successfully from backend');
+            logger.log('[OAuth Popup] ID token received successfully from backend');
             resolve(payload.id_token as string);
           } else {
-            console.error('[OAuth Popup] No id_token in backend payload:', payload);
+            logger.error('[OAuth Popup] No id_token in backend payload:', payload);
             reject(new Error('No id_token received from backend.'));
           }
           
           // Client closes popup after receiving message from backend
           try {
-            console.log('[OAuth Popup] Closing popup from client');
+            logger.log('[OAuth Popup] Closing popup from client');
             popup?.close();
           } catch (e) {
-            console.warn('[OAuth Popup] Could not close popup:', e);
+            logger.warn('[OAuth Popup] Could not close popup:', e);
           }
           return;
         }
         
         // Legacy frontend callback format: { source: 'google-id-token', id_token }
         if (data?.source === expectedSource) {
-          console.log('[OAuth Popup] Legacy frontend callback format detected');
+          logger.log('[OAuth Popup] Legacy frontend callback format detected');
           
           messageReceived = true;
           clearInterval(timer);
           window.removeEventListener('message', onMessage);
           
           if (data.error) {
-            console.error('[OAuth Popup] Error from callback:', data.error);
+            logger.error('[OAuth Popup] Error from callback:', data.error);
             reject(new Error(data.error));
           } else if (data.id_token) {
-            console.log('[OAuth Popup] ID token received successfully');
+            logger.log('[OAuth Popup] ID token received successfully');
             resolve(data.id_token as string);
           } else {
-            console.error('[OAuth Popup] No id_token in message:', data);
+            logger.error('[OAuth Popup] No id_token in message:', data);
             reject(new Error('No id_token received.'));
           }
           
           try {
             popup?.close();
           } catch (e) {
-            console.warn('[OAuth Popup] Could not close popup:', e);
+            logger.warn('[OAuth Popup] Could not close popup:', e);
           }
           return;
         }
         
-        console.log('[OAuth Popup] Message format not recognized:', {
+        logger.log('[OAuth Popup] Message format not recognized:', {
           type: data?.type,
           source: data?.source,
           expectedSource
         });
       } catch (err) {
-        console.error('[OAuth Popup] Error processing message:', err);
+        logger.error('[OAuth Popup] Error processing message:', err);
       }
     }
 
     window.addEventListener('message', onMessage);
-    console.log('[OAuth Popup] Listening for postMessage from callback page');
+    logger.log('[OAuth Popup] Listening for postMessage from callback page');
   });
 }
 

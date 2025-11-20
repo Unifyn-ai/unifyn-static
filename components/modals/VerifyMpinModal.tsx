@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { verify2FA } from '../../lib/auth';
 import { useUser } from '../UserProvider';
+import { logger } from '../../utils/logger';
 
 export function VerifyMpinModal({ 
   open, 
@@ -38,7 +39,7 @@ export function VerifyMpinModal({
       setVerifying2FA(true);
       
       const resp = await verify2FA(mpin);
-      console.log('Verify 2FA response:', resp);
+      logger.log('Verify 2FA response:', resp);
       
       setStatusMsg('2FA verification complete.');
       

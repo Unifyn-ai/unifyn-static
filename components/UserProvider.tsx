@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, useCallback, ReactNode } from 'react';
 import { getUserDetails, logoutUser, UserDetails } from '../lib/user';
+import { logger } from '../utils/logger';
 
 interface UserContextValue {
   user: UserDetails | null;
@@ -26,7 +27,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       const userDetails = await getUserDetails();
       setUser(userDetails);
     } catch (error) {
-      console.error('[UserProvider] Error refreshing user:', error);
+      logger.error('[UserProvider] Error refreshing user:', error);
       setUser(null);
     } finally {
       setIsLoading(false);
@@ -43,7 +44,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         setUser(null);
       }
     } catch (error) {
-      console.error('[UserProvider] Error logging out:', error);
+      logger.error('[UserProvider] Error logging out:', error);
     }
   }, []);
 

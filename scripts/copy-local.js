@@ -44,6 +44,17 @@ function main() {
   rimrafDirContents(DEST);
   console.log(`Copying ${OUT} -> ${DEST}`);
   copyRecursive(OUT, DEST);
+  
+  // Copy nginx.conf for local nginx server
+  const nginxSrc = path.resolve(__dirname, '..', 'nginx.conf');
+  const nginxDest = path.join(DEST, 'nginx.conf');
+  if (fs.existsSync(nginxSrc)) {
+    console.log('Copying nginx.conf for security headers...');
+    fs.copyFileSync(nginxSrc, nginxDest);
+    console.log('⚠️  Remember to include nginx.conf in your nginx server block!');
+    console.log('   See LIGHTHOUSE_BEST_PRACTICES_IMPROVEMENTS.md for instructions.');
+  }
+  
   console.log('Copy completed.');
 }
 

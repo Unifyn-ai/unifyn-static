@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { completeProfile } from '../../lib/auth';
 import { useUser } from '../UserProvider';
+import { logger } from '../../utils/logger';
 
 export function CompleteProfileModal({ 
   open, 
@@ -22,6 +23,11 @@ export function CompleteProfileModal({
   // Ref for name input auto-focus
   const nameInputRef = useRef<HTMLInputElement>(null);
 
+  // Check if MPINs match (only if both are fully entered)
+  const mpinsMatch = profileMpin.length === 6 && repeatMpin.length === 6 
+    ? profileMpin === repeatMpin 
+    : true; // Don't show error until both are fully entered
+
   // Auto-focus name input when modal opens
   useEffect(() => {
     if (open && nameInputRef.current) {
@@ -38,13 +44,7 @@ export function CompleteProfileModal({
       setErrorMsg(null);
       setStatusMsg(null);
       
-      // Validate MPIN match
-      if (profileMpin !== repeatMpin) {
-        setErrorMsg('MPINs do not match. Please try again.');
-        return;
-      }
-      
-      // Validate MPIN length
+      // Validate MPIN length (match check is already done via button disabled state)
       if (profileMpin.length !== 6) {
         setErrorMsg('MPIN must be 6 digits.');
         return;
@@ -59,7 +59,7 @@ export function CompleteProfileModal({
       setCompletingProfile(true);
       
       const resp = await completeProfile(name.trim(), profileMpin);
-      console.log('Complete profile response:', resp);
+      logger.log('Complete profile response:', resp);
       
       setStatusMsg('Profile completed successfully!');
       
@@ -73,7 +73,7 @@ export function CompleteProfileModal({
     } finally {
       setCompletingProfile(false);
     }
-  }, [name, profileMpin, repeatMpin, refreshUser, onClose]);
+  }, [name, profileMpin, refreshUser, onClose]);
 
   return (
     <div
@@ -191,7 +191,7 @@ export function CompleteProfileModal({
               </div>
               <button 
                 type="submit" 
-                disabled={completingProfile || !name.trim() || profileMpin.length !== 6 || repeatMpin.length !== 6} 
+                disabled={completingProfile || !name.trim() || profileMpin.length !== 6 || repeatMpin.length !== 6 || !mpinsMatch} 
                 className="w-full rounded-xl px-6 py-3.5 text-sm font-semibold bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5 duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {completingProfile ? 'Completing Profile...' : 'Complete Profile'}
@@ -203,8 +203,9 @@ export function CompleteProfileModal({
                 <div className="mt-0.5"><svg className="w-5 h-5 text-cyan-500/60" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"/></svg></div>
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Your MPIN will be used for secure transactions. Keep it safe and don't share it with anyone.</p>
               </div>
-              {(errorMsg || statusMsg) && (
+              {(errorMsg || statusMsg || !mpinsMatch) && (
                 <div className="mt-3 text-xs">
+                  {!mpinsMatch && <p className="text-red-600 dark:text-red-400">MPIN mismatch</p>}
                   {errorMsg && <p className="text-red-600 dark:text-red-400">{errorMsg}</p>}
                   {statusMsg && <p className="text-emerald-700 dark:text-emerald-400">{statusMsg}</p>}
                 </div>

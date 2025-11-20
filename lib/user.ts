@@ -1,4 +1,5 @@
 import { API_BASE_URL } from '../app/config';
+import { logger } from '../utils/logger';
 
 // Type definitions
 export interface UserDetails {
@@ -35,11 +36,12 @@ export async function getUserDetails(): Promise<UserDetails | null> {
     });
 
     if (!response.ok) {
-      // User is not authenticated
+      // User is not authenticated - silently return null (expected behavior)
       if (response.status === 401) {
         return null;
       }
-      throw new Error(`Failed to fetch user details: ${response.status}`);
+      logger.error(`Failed to fetch user details: ${response.status}`);
+      return null;
     }
 
     const data: UserDetailsResponse = await response.json();
@@ -50,7 +52,7 @@ export async function getUserDetails(): Promise<UserDetails | null> {
 
     return null;
   } catch (error) {
-    console.error('[getUserDetails] Error:', error);
+    logger.error('[getUserDetails] Error:', error);
     return null;
   }
 }
@@ -70,7 +72,7 @@ export async function logoutUser(): Promise<boolean> {
 
     return response.ok;
   } catch (error) {
-    console.error('[logoutUser] Error:', error);
+    logger.error('[logoutUser] Error:', error);
     return false;
   }
 }

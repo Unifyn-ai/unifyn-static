@@ -13,6 +13,7 @@ import {
   verifyEmailOtp,
   verifyMobileOtp,
 } from '../../lib/auth';
+import { logger } from '../../utils/logger';
 import { useUser } from '../UserProvider';
 import { CompleteProfileModal } from './CompleteProfileModal';
 import { VerifyMpinModal } from './VerifyMpinModal';
@@ -66,15 +67,15 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       setStatusMsg(null);
       setGoogleLoading(true);
       
-      console.log('[LoginModal] Starting Google sign-in...');
+      logger.log('[LoginModal] Starting Google sign-in...');
       setStatusMsg('Opening Google sign-in...');
       
       const idToken = await googleSignIn();
-      console.log('[LoginModal] Google ID Token received:', idToken?.substring(0, 50) + '...');
+      logger.log('[LoginModal] Google ID Token received:', idToken?.substring(0, 50) + '...');
       
       setStatusMsg('Google sign-in successful. Exchanging with backend...');
       const resp = await authWithGoogle(idToken);
-      console.log('[LoginModal] Backend /auth/google response:', resp);
+      logger.log('[LoginModal] Backend /auth/google response:', resp);
       
       setStatusMsg('Google authentication complete.');
       
@@ -84,7 +85,7 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       // Close modal after successful login
       setTimeout(() => onClose(), 500);
     } catch (e: any) {
-      console.error('[LoginModal] Google sign-in error:', {
+      logger.error('[LoginModal] Google sign-in error:', {
         message: e?.message,
         stack: e?.stack,
         error: e
@@ -101,10 +102,10 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       setStatusMsg(null);
       setAppleLoading(true);
       const idToken = await appleSignIn();
-      console.log('Apple ID Token:', idToken);
+      logger.log('Apple ID Token:', idToken);
       setStatusMsg('Apple sign-in successful. Exchanging with backend...');
       const resp = await authWithApple(idToken);
-      console.log('Backend /auth/apple response:', resp);
+      logger.log('Backend /auth/apple response:', resp);
       setStatusMsg('Apple authentication complete.');
       
       // Refresh user state after successful authentication
@@ -145,10 +146,10 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       setSending(true);
       if (method === 'mobile') {
         const resp = await initMobileAuth(mobile, 'login');
-        console.log('Init Mobile OTP response:', resp);
+        logger.log('Init Mobile OTP response:', resp);
       } else {
         const resp = await initEmailAuth(email, 'login');
-        console.log('Init Email OTP response:', resp);
+        logger.log('Init Email OTP response:', resp);
       }
       setOtpPhase(true);
       setResendTimer(30);
@@ -167,10 +168,10 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       setResending(true);
       if (method === 'mobile') {
         const resp = await resendMobileOtp(mobile, 'login');
-        console.log('Resend Mobile OTP response:', resp);
+        logger.log('Resend Mobile OTP response:', resp);
       } else {
         const resp = await resendEmailOtp(email, 'login');
-        console.log('Resend Email OTP response:', resp);
+        logger.log('Resend Email OTP response:', resp);
       }
       setResendTimer(30);
       setStatusMsg('OTP resent.');
@@ -190,10 +191,10 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       let resp: any;
       if (method === 'mobile') {
         resp = await verifyMobileOtp(mobile, otp, 'login');
-        console.log('Verify Mobile OTP response:', resp);
+        logger.log('Verify Mobile OTP response:', resp);
       } else {
         resp = await verifyEmailOtp(email, otp, 'login');
-        console.log('Verify Email OTP response:', resp);
+        logger.log('Verify Email OTP response:', resp);
       }
       
       // Check response structure

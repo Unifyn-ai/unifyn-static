@@ -1,0 +1,29 @@
+# Modern browsers that support all ES2022 features
+# This prevents unnecessary polyfills and reduces bundle size
+
+# Chrome 91+ (May 2021) - supports Array.at, Object.hasOwn, etc.
+chrome >= 91
+
+# Edge 91+ (May 2021)
+edge >= 91
+
+# Firefox 90+ (July 2021)
+firefox >= 90
+
+# Safari 15+ (September 2021)
+safari >= 15
+
+# iOS Safari 15+
+ios >= 15
+
+# Chrome for Android 91+
+and_chr >= 91
+
+# Samsung Internet 15+
+samsung >= 15
+
+# Exclude old browsers to avoid polyfills
+not IE 11
+not dead
+not op_mini all
+
