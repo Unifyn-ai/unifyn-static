@@ -103,7 +103,7 @@ function openBlankCenteredPopup(name: string) {
   const left = width / 2 - w / 2 + (dualScreenLeft || 0);
   const top = height / 2 - h / 2 + (dualScreenTop || 0);
 
-  const features = `scrollbars=yes, width=${w}, height=${h}, top=${top}, left=${left}`;
+  const features = `toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=${w},height=${h},top=${top},left=${left}`;
   const popup = window.open('', name, features);
   popup?.focus();
   return popup;

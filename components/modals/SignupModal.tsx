@@ -19,7 +19,7 @@ export function SignupModal({ open, onClose }: { open: boolean; onClose: () => v
             </div>
             <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); onClose(); }}>
               <div>
-                <label htmlFor="signup-name" className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-2 uppercase tracking-wide">Name (Optional)</label>
+                <label htmlFor="signup-name" className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-2 uppercase tracking-wide">Full Name</label>
                 <input id="signup-name" name="name" type="text" placeholder="Enter your name" className="w-full rounded-xl border border-slate-300 dark:border-slate-700/50 bg-white dark:bg-slate-800/50 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition-all" />
               </div>
               <div>

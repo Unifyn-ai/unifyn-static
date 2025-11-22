@@ -18,6 +18,7 @@ import { logger } from '../../utils/logger';
 import { useUser } from '../UserProvider';
 import { CompleteProfileModal } from './CompleteProfileModal';
 import { VerifyMpinModal } from './VerifyMpinModal';
+import { logModalOpen, logModalClose, logLoginEvent, logErrorEvent } from '../../lib/analytics';
 
 export function LoginModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const router = useRouter();
@@ -43,9 +44,15 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
   // Ref for OTP first input auto-focus
   const firstOtpInputRef = useRef<HTMLInputElement>(null);
 
-  // Reset all state when modal is closed
+  // Track modal open/close and reset state
   useEffect(() => {
-    if (!open) {
+    if (open) {
+      // Track modal open
+      logModalOpen('LoginModal');
+    } else {
+      // Track modal close
+      logModalClose('LoginModal');
+      
       // Reset all form states
       setMethod('mobile');
       setMobile('');
@@ -81,6 +88,9 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       
       setStatusMsg('Google authentication complete.');
       
+      // Log successful login
+      await logLoginEvent('google');
+      
       // Refresh user state after successful authentication
       await refreshUser();
       
@@ -93,7 +103,11 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
         stack: e?.stack,
         error: e
       });
-      setErrorMsg(e?.message || 'Google sign-in failed.');
+      const errorMessage = e?.message || 'Google sign-in failed.';
+      setErrorMsg(errorMessage);
+      
+      // Log error to analytics
+      await logErrorEvent(errorMessage, 'LoginModal_Google');
     } finally {
       setGoogleLoading(false);
     }
@@ -111,6 +125,9 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       logger.log('Backend /auth/apple response:', resp);
       setStatusMsg('Apple authentication complete.');
       
+      // Log successful login
+      await logLoginEvent('apple');
+      
       // Refresh user state after successful authentication
       await refreshUser();
       
@@ -118,7 +135,11 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       onClose();
       router.push('/trade');
     } catch (e: any) {
-      setErrorMsg(e?.message || 'Apple sign-in failed.');
+      const errorMessage = e?.message || 'Apple sign-in failed.';
+      setErrorMsg(errorMessage);
+      
+      // Log error to analytics
+      await logErrorEvent(errorMessage, 'LoginModal_Apple');
     } finally {
       setAppleLoading(false);
     }
@@ -223,6 +244,9 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       // Scenario 3: Fully authenticated
       setStatusMsg('Verification complete.');
       
+      // Log successful login with OTP method
+      await logLoginEvent(method === 'mobile' ? 'mobile_otp' : 'email_otp');
+      
       // Refresh user state after successful authentication
       await refreshUser();
       
@@ -230,7 +254,11 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
       onClose();
       router.push('/trade');
     } catch (e: any) {
-      setErrorMsg(e?.message || 'Failed to verify OTP.');
+      const errorMessage = e?.message || 'Failed to verify OTP.';
+      setErrorMsg(errorMessage);
+      
+      // Log error to analytics
+      await logErrorEvent(errorMessage, 'LoginModal_OTP_Verification');
     } finally {
       setVerifying(false);
     }

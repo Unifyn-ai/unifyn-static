@@ -6,6 +6,7 @@ import { Inter } from 'next/font/google';
 import { ModalProvider } from '../components/ModalProvider';
 import { ThemeProvider } from '../components/ThemeProvider';
 import { UserProvider } from '../components/UserProvider';
+import { FirebaseProvider } from '../components/FirebaseProvider';
 
 // Optimize font loading with Next.js
 const inter = Inter({
@@ -242,11 +243,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={`${inter.className} bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased relative`}>
-        <ThemeProvider>
-          <UserProvider>
-            <ModalProvider>{children}</ModalProvider>
-          </UserProvider>
-        </ThemeProvider>
+        <FirebaseProvider>
+          <ThemeProvider>
+            <UserProvider>
+              <ModalProvider>{children}</ModalProvider>
+            </UserProvider>
+          </ThemeProvider>
+        </FirebaseProvider>
       </body>
     </html>
   );
