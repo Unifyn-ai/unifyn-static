@@ -15,3 +15,6 @@ export const CONTACT_ENDPOINTS = {
   VERIFY: '/api/public/contact/verify',
   SUBMIT: '/api/public/contact',
 } as const;
+
+// Early access API endpoint
+export const EARLY_ACCESS_ENDPOINT = '/api/public/early-access';
