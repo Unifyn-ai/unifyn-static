@@ -8,3 +8,10 @@ export const GOOGLE_REDIRECT_URI = process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI |
 export const APPLE_CLIENT_ID = process.env.NEXT_PUBLIC_APPLE_CLIENT_ID || 'ai.unifyn.app.signin';
 // Backend callback - server posts message to parent window
 export const APPLE_REDIRECT_URI = process.env.NEXT_PUBLIC_APPLE_REDIRECT_URI || 'https://home.unifyn.trade/api/callbacks/apple/signin';
+
+// Contact form API endpoints
+export const CONTACT_ENDPOINTS = {
+  INIT: '/api/public/contact/init',
+  VERIFY: '/api/public/contact/verify',
+  SUBMIT: '/api/public/contact',
+} as const;

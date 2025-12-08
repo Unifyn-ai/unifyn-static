@@ -3,6 +3,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SHOW_BROKER_UI } from './config';
 import { useEffect, useState } from 'react';
+import { ContactForm } from '../components/ContactForm';
 
 export default function HomePage() {
   const [hideChrome, setHideChrome] = useState(false);
@@ -322,63 +323,11 @@ export default function HomePage() {
                 <h2 id="contact-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--color-heading)] mb-3 sm:mb-4 px-2">Contact Us</h2>
                 <p className="text-base sm:text-lg text-[var(--color-muted)] px-2 leading-relaxed">Support, partnerships, media — we're here to help.</p>
               </header>
-              <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-sm p-5 sm:p-8">
-                <form className="space-y-4 sm:space-y-5" aria-label="Contact form">
-                  <div>
-                    <label htmlFor="name" className="block text-sm sm:text-base font-medium text-[var(--color-muted)] mb-2">
-                      Name <span className="text-red-400" aria-label="required">*</span>
-                    </label>
-                    <input 
-                      id="name" 
-                      name="name" 
-                      type="text"
-                      required
-                      aria-required="true"
-                      className="w-full rounded-lg border border-[var(--input-border)] bg-[var(--input-bg)] px-4 py-2.5 sm:py-3 text-sm sm:text-base text-[var(--text)] placeholder-[var(--input-placeholder)] focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)] focus:border-transparent transition-all" 
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm sm:text-base font-medium text-[var(--color-muted)] mb-2">
-                      Email <span className="text-red-400" aria-label="required">*</span>
-                    </label>
-                    <input 
-                      id="email" 
-                      name="email" 
-                      type="email"
-                      required
-                      aria-required="true"
-                      className="w-full rounded-lg border border-[var(--input-border)] bg-[var(--input-bg)] px-4 py-2.5 sm:py-3 text-sm sm:text-base text-[var(--text)] placeholder-[var(--input-placeholder)] focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)] focus:border-transparent transition-all" 
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="block text-sm sm:text-base font-medium text-[var(--color-muted)] mb-2">
-                      Message <span className="text-red-400" aria-label="required">*</span>
-                    </label>
-                    <textarea 
-                      id="message" 
-                      name="message" 
-                      rows={5} 
-                      required
-                      aria-required="true"
-                      className="w-full rounded-lg border border-[var(--input-border)] bg-[var(--input-bg)] px-4 py-2.5 sm:py-3 text-sm sm:text-base text-[var(--text)] placeholder-[var(--input-placeholder)] focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)] focus:border-transparent transition-all resize-none" 
-                    />
-                  </div>
-                  <button 
-                    type="submit"
-                    className="w-full rounded-full px-6 py-3 sm:py-3.5 text-sm sm:text-base font-semibold bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] hover:bg-[var(--button-primary-bg-hover)] transition-colors shadow-lg focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)] focus:ring-offset-2 focus:ring-offset-[var(--bg)]"
-                    aria-label="Send message to Unifyn"
-                  >
-                    Send message
-                  </button>
-                </form>
-                <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-[var(--card-border)]">
-                  <p className="text-sm sm:text-base text-[var(--color-muted)]">
-                    Prefer email? <a href="mailto:support@unifyn.ai" className="text-[var(--hero-accent)] hover:opacity-90 transition-colors underline break-all">support@unifyn.ai</a>
-                  </p>
-                  {/* <address className="mt-2 not-italic text-sm sm:text-base text-[var(--color-muted)]">
-                    Bengaluru, Karnataka
-                  </address> */}
-                </div>
+              <ContactForm />
+              <div className="mt-4 sm:mt-6">
+                <p className="text-sm sm:text-base text-[var(--color-muted)]">
+                  Prefer email? <a href="mailto:support@unifyn.ai" className="text-[var(--hero-accent)] hover:opacity-90 transition-colors underline break-all">support@unifyn.ai</a>
+                </p>
               </div>
             </div>
           </div>
