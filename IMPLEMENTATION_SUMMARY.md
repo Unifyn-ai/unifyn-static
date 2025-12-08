@@ -210,7 +210,7 @@ components/modals/*      → Business Logic Layer
 ### API Base URL
 Located in `app/config.ts`:
 ```typescript
-export const API_BASE_URL = 'https://home.unifyn.trade/api';
+export const API_BASE_URL = 'https://unifyn.ai/api';
 ```
 
 All endpoints are relative to this base URL:

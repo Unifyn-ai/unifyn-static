@@ -6,7 +6,7 @@
 
 **Root Cause:** The `GOOGLE_REDIRECT_URI` in `app/config.ts` is pointing to your **backend API** endpoint:
 ```typescript
-GOOGLE_REDIRECT_URI = 'https://home.unifyn.trade/api/callbacks/google/signin'
+GOOGLE_REDIRECT_URI = 'https://unifyn.ai/api/callbacks/google/signin'
 ```
 
 But the **popup OAuth flow** expects to redirect to a **frontend callback page**:
@@ -21,7 +21,7 @@ GOOGLE_REDIRECT_URI = 'https://unifyn.trade/auth/callback/google'  // ✅ Correc
 1. User clicks "Continue with Google"
 2. Popup opens → Google OAuth
 3. User signs in with Google
-4. Google redirects to: https://home.unifyn.trade/api/callbacks/google/signin ❌
+4. Google redirects to: https://unifyn.ai/api/callbacks/google/signin ❌
 5. Backend API responds (not a popup-friendly page)
 6. Popup closes immediately without sending postMessage
 7. Parent window never receives ID token
@@ -122,7 +122,7 @@ Go to: https://console.cloud.google.com/apis/credentials
    ```
 3. **Remove** (or keep for backend flows):
    ```
-   https://home.unifyn.trade/api/callbacks/google/signin
+   https://unifyn.ai/api/callbacks/google/signin
    ```
 4. Click **Save**
 5. Wait 5-10 minutes for Google to propagate changes
@@ -168,7 +168,7 @@ I've added comprehensive logging to help you debug:
 **If redirect URI is wrong:**
 ```
 [OAuth] Building Google Auth URL: { 
-  redirectUri: "https://home.unifyn.trade/api/callbacks/google/signin" 
+  redirectUri: "https://unifyn.ai/api/callbacks/google/signin" 
 }
 // Popup closes immediately, no callback logs appear
 [OAuth Popup] Popup closed without receiving message

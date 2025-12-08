@@ -41,7 +41,7 @@ Your backend OAuth callback has been fixed and now properly sends messages to th
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │ 4. Google redirects to backend callback                         │
-│    URL: https://home.unifyn.trade/api/callbacks/google/signin  │
+│    URL: https://unifyn.ai/api/callbacks/google/signin  │
 │    Hash: #id_token=eyJhbGc...&state=xxx                        │
 └────────────────────────────┬────────────────────────────────────┘
                              │
@@ -138,7 +138,7 @@ The `oauthPopup` function now handles **three message formats**:
 ```javascript
 [LoginModal] Starting Google sign-in...
 [OAuth] Building Google Auth URL: {
-  redirectUri: "https://home.unifyn.trade/api/callbacks/google/signin"
+  redirectUri: "https://unifyn.ai/api/callbacks/google/signin"
 }
 [OAuth Popup] Starting OAuth flow...
 [OAuth Popup] Popup opened successfully
@@ -236,19 +236,19 @@ The client maintains the popup reference and closes it after receiving the messa
 // app/config.ts
 export const GOOGLE_REDIRECT_URI = 
   process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI || 
-  'https://home.unifyn.trade/api/callbacks/google/signin';
+  'https://unifyn.ai/api/callbacks/google/signin';
 
 export const APPLE_REDIRECT_URI = 
   process.env.NEXT_PUBLIC_APPLE_REDIRECT_URI || 
-  'https://home.unifyn.trade/api/callbacks/apple/signin';
+  'https://unifyn.ai/api/callbacks/apple/signin';
 ```
 
 ### Environment Variables (Optional)
 
 ```bash
 # .env.local
-NEXT_PUBLIC_GOOGLE_REDIRECT_URI=https://home.unifyn.trade/api/callbacks/google/signin
-NEXT_PUBLIC_APPLE_REDIRECT_URI=https://home.unifyn.trade/api/callbacks/apple/signin
+NEXT_PUBLIC_GOOGLE_REDIRECT_URI=https://unifyn.ai/api/callbacks/google/signin
+NEXT_PUBLIC_APPLE_REDIRECT_URI=https://unifyn.ai/api/callbacks/apple/signin
 ```
 
 ## ✅ Checklist

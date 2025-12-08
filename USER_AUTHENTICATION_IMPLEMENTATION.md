@@ -173,7 +173,7 @@ ThemeProvider
 
 **Request:**
 ```javascript
-fetch('https://home.unifyn.trade/api/user/details', {
+fetch('https://unifyn.ai/api/user/details', {
   method: 'GET',
   credentials: 'include', // Critical: sends HTTP cookies
   headers: {
@@ -210,7 +210,7 @@ fetch('https://home.unifyn.trade/api/user/details', {
 
 **Request:**
 ```javascript
-fetch('https://home.unifyn.trade/api/auth/logout', {
+fetch('https://unifyn.ai/api/auth/logout', {
   method: 'POST',
   credentials: 'include', // Critical: sends HTTP cookies
   headers: {
@@ -325,7 +325,7 @@ unifyn-static/
 
 **API Base URL** (`app/config.ts`):
 ```typescript
-export const API_BASE_URL = 'https://home.unifyn.trade/api';
+export const API_BASE_URL = 'https://unifyn.ai/api';
 ```
 
 All API calls use this base URL with the following endpoints:

@@ -67,7 +67,7 @@
 ### Check User State in Browser Console
 ```javascript
 // Open browser console and run:
-fetch('https://home.unifyn.trade/api/user/details', {
+fetch('https://unifyn.ai/api/user/details', {
   method: 'GET',
   credentials: 'include',
   headers: {
@@ -88,7 +88,7 @@ document.cookie
 ### Test Logout Endpoint
 ```javascript
 // In browser console:
-fetch('https://home.unifyn.trade/api/auth/logout', {
+fetch('https://unifyn.ai/api/auth/logout', {
   method: 'POST',
   credentials: 'include',
   headers: {

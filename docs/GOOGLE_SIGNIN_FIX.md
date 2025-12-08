@@ -112,7 +112,7 @@ export async function googleSignIn(): Promise<string> {
 // Pointed to backend API - wrong for popup OAuth flow
 export const GOOGLE_REDIRECT_URI = 
   process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI || 
-  'https://home.unifyn.trade/api/callbacks/google/signin';
+  'https://unifyn.ai/api/callbacks/google/signin';
 ```
 
 **After:**
