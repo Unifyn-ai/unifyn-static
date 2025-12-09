@@ -337,9 +337,29 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
                 </div>
               )}
               <div>
-                <label htmlFor="login-input" className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-2 uppercase tracking-wide">
-                  {otpPhase ? 'Enter OTP' : method === 'mobile' ? 'Mobile Number' : 'Email Address'}
-                </label>
+                <div className="flex items-center justify-between mb-2">
+                  <label htmlFor="login-input" className="block text-xs font-medium text-slate-600 dark:text-slate-400 uppercase tracking-wide">
+                    {otpPhase ? 'Enter OTP' : method === 'mobile' ? 'Mobile Number' : 'Email Address'}
+                  </label>
+                  {otpPhase && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setOtpPhase(false);
+                        setOtp('');
+                        setResendTimer(0);
+                        setErrorMsg(null);
+                        setStatusMsg(null);
+                      }}
+                      className="text-xs font-medium text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300 transition-colors flex items-center gap-1"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                      </svg>
+                      Change {method === 'mobile' ? 'Mobile' : 'Email'}
+                    </button>
+                  )}
+                </div>
                 {!otpPhase ? (
                   <div className="relative">
                     {method === 'mobile' && (
@@ -407,6 +427,11 @@ export function LoginModal({ open, onClose }: { open: boolean; onClose: () => vo
                       />
                     ))}
                   </div>
+                )}
+                {otpPhase && (
+                  <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center">
+                    OTP sent to <span className="font-medium text-slate-700 dark:text-slate-300">{method === 'mobile' ? `+91 ${mobile}` : email}</span>
+                  </p>
                 )}
               </div>
               <button 
