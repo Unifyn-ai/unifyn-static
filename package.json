@@ -12,7 +12,9 @@
     "deploy": "wrangler pages deploy out --project-name=unifyn-trade",
     "deploy:s3": "npm run build && aws s3 sync out s3://YOUR-BUCKET-NAME --delete --cache-control max-age=31536000,public --exclude '*.html' && aws s3 sync out s3://YOUR-BUCKET-NAME --delete --cache-control max-age=3600,public --exclude '*' --include '*.html'",
     "validate": "node scripts/validate.js",
-    "push:local": "npm run build && node scripts/copy-local.js \"/Users/ashutosh/www/unifyn\""
+    "push:local": "npm run build && node scripts/copy-local.js \"/Users/ashutosh/www/unifyn\"",
+    "test:chrome": "bash scripts/chrome-test.sh",
+    "test:chrome:win": "scripts\\chrome-test.bat"
   },
   "keywords": [
     "unified finance superapp",
