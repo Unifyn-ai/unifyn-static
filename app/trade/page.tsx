@@ -137,7 +137,7 @@ export default function TradePage() {
           {/* Header Section */}
           <div className="mb-8">
             <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              Welcome to Trading, {userName}!
+              Welcome, {userName}!
             </h1>
             <p className="text-lg text-slate-600 dark:text-slate-400">
               Manage your broker accounts and start trading with Unifyn's unified platform

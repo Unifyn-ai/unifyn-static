@@ -35,3 +35,4 @@ echo "   3. Open DevTools (Cmd+Option+I) → Network tab"
 echo "   4. Test broker integration"
 echo ""
 
+
