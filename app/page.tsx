@@ -141,6 +141,17 @@ export default function HomePage() {
             <p className="mt-6 sm:mt-8 text-xs text-[var(--color-muted)] max-w-2xl mx-auto px-4 leading-relaxed" role="note">
               <strong>Disclaimer:</strong> Unifyn is not a stock broker. Market investments are subject to risks. No broker integrations are live yet.
             </p>
+            <p className="mt-4 text-xs text-[var(--color-muted)] max-w-2xl mx-auto px-4">
+              Trading Chart is powered by{' '}
+              <a
+                href="https://www.tradingview.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline font-medium transition-colors"
+              >
+                TradingView
+              </a>
+            </p>
             <div className="mt-12 sm:mt-16">
               <p className="text-xs sm:text-sm text-[var(--color-muted)] mb-3 sm:mb-4 px-4">Built for everyone. Broker-agnostic unified finance app.</p>
             </div>
