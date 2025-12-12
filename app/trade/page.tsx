@@ -341,6 +341,21 @@ export default function TradePage() {
               </p>
             </div>
           </div>
+
+          {/* TradingView Attribution */}
+          <div className="mt-4 text-center">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              Trading Chart is powered by{' '}
+              <a
+                href="https://www.tradingview.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 underline font-medium transition-colors"
+              >
+                TradingView
+              </a>
+            </p>
+          </div>
         </div>
       </main>
       <Footer />
